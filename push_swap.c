@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:01:07 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/17 20:24:10 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:32:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 
 	ps.stack_a = NULL;
 	ps.stack_b = NULL;
-	exit(1);
 	counter = 1;
 	if (argc < 2)
 		ps_exit("Usage: ./push_swap {NUMBER} ... \"{NUMBER}\"\n", 1, &ps);
@@ -56,4 +55,6 @@ int	main(int argc, char **argv)
 		printf("%d\n", ps.stack_a[ponter]);
 		ponter++;
 	}
+	free(ps.stack_a);
+	free(ps.stack_b);
 }
