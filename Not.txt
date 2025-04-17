@@ -1,0 +1,3 @@
+argv[]'yi kullanarak argümanların uzunluğunu bulmalısın. görünen o ki int arraylerin uzunluğunu bulmaya çalışmak pek sağlıklı değil
+çünkü null terminate gibi özellikleri yok. while(argv[counter + 1]) ile argümanlara split atarak uzunluk bularak elde ettiğin
+sayı ile malloc atmalısın.
