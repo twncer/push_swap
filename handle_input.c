@@ -15,6 +15,9 @@
 #include <stdbool.h>
 #include <stdio.h> //dl
 #include <stdlib.h>
+#include <limits.h>
+
+void	ps_exit(char *text, int code, struct s_push_swap *ps);
 
 void	free_map(char **map)
 {
@@ -65,7 +68,41 @@ bool alloc_stacks(int stack_len, struct s_push_swap *ps)
     return (true);
 }
 
-bool set_number(char *arg, int *to_set);
+bool set_number(char *arg, int *to_set)
+{
+    long res;
+    int sign_counter;
+    int sign;
+
+    res = 0;
+    sign_counter = 0;
+    sign = 0;
+    while (*arg)
+    {
+        if (!in("-+0123456789", *arg))
+            return (false);
+        if (in("-+", *arg))
+            sign_counter++;
+        if (*arg == '-')
+            sign = 1;
+        if (sign_counter > 1 || (*(arg + 1) && in("0123456789", *arg)
+            && in("-+", *(arg + 1))) || (*(arg + 1) && in("-+", *arg) 
+            && !in("0123456789", *(arg + 1))))
+            return (false);
+        if (in("0123456789", *arg))
+        {
+            res *= 10;
+            res += *arg - 48;
+        }
+        arg++;
+    }
+    if (sign == 1)
+        res = res * -1;
+    if (res > INT_MAX || res < INT_MIN)
+        return (false);
+    *to_set = (int)res;
+    return (true);
+}
 
 int	set_stack(char **argv, int stack_len, struct s_push_swap *ps)
 {
@@ -74,7 +111,7 @@ int	set_stack(char **argv, int stack_len, struct s_push_swap *ps)
     int counter3;
     char **arg_parsed;
     
-    if (!alloc_stacks(stack_len, ps));
+    if (!alloc_stacks(stack_len, ps))
         ps_exit("Allocation fault.\n", 1, ps);
     counter = 1;
     counter3 = 0;
@@ -84,7 +121,8 @@ int	set_stack(char **argv, int stack_len, struct s_push_swap *ps)
         counter2 = 0;
         while (arg_parsed[counter2])
         {
-            ps->stack_a[counter3] = atoi(arg_parsed[counter2]);
+            if (!set_number(arg_parsed[counter2], &ps->stack_a[counter3]))
+                ps_exit("Wrong type of input as integer.\n", 1, ps);
             counter2++;
             counter3++;
         }

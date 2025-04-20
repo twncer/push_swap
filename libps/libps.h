@@ -13,8 +13,10 @@
 #ifndef LIBPS_H
 # define LIBPS_H
 # include <sys/types.h>
+# include <stdbool.h>
 
 char	**ps_split(char const *s, char c);
 ssize_t	len(char *str);
+bool	in(char *str, char c);
 
 #endif

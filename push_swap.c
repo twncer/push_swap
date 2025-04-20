@@ -19,7 +19,7 @@
 __attribute__((destructor))
 void exit_f()
 {
-	printf("ben gidiyom·\n");
+	printf("\n\n𝒷𝑒𝓃 𝑔𝒾𝒹𝒾𝓎𝑜𝓂·\n");
 }
 
 void	ps_exit(char *text, int code, struct s_push_swap *ps)
