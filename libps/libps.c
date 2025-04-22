@@ -6,12 +6,13 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:58:57 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/16 01:00:57 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 04:56:54 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <sys/types.h>
 
 bool	in(char *str, char c)
 {
@@ -21,6 +22,20 @@ bool	in(char *str, char c)
 	while (str[counter])
 	{
 		if (str[counter] == c)
+			return (true);
+		counter++;
+	}
+	return (false);
+}
+
+bool	in_int(int *arr, int i, int len)
+{
+	ssize_t	counter;
+
+	counter = 0;
+	while (counter < len)
+	{
+		if (arr[counter] == i)
 			return (true);
 		counter++;
 	}
@@ -40,25 +55,15 @@ ssize_t	len(char *str)
 	return (counter);
 }
 
-int ps_atoi(char *str)
+void	free_map(char **map)
 {
-    int counter;
-    int res;
-    int sign_counter;
-    bool minus;
+	int	y;
 
-    counter = 0;
-    res = 0;
-    sign_counter = 0;
-    minus = false;
-    while (str[counter])
-    {
-        if (!(in("-+0123456789", str[counter])))
-            return (false);
-        if (in("-+", str[counter]))
-            sign_counter++;
-        if ((str[counter + 1] && in("0123456789", str[counter])
-                && in("-+", str[counter + 1])) || sign_counter > 1)
-            return (false);
-    }
+	y = 0;
+	while (map[y])
+	{
+		free(map[y]);
+		y++;
+	}
+	free(map);
 }

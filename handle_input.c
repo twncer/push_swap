@@ -6,31 +6,15 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 02:03:56 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/17 20:37:26 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:10:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libps/libps.h"
 #include "./push_swap.h"
 #include <stdbool.h>
-#include <stdio.h> //dl
 #include <stdlib.h>
 #include <limits.h>
-
-void	ps_exit(char *text, int code, struct s_push_swap *ps);
-
-void	free_map(char **map)
-{
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		free(map[y]);
-		y++;
-	}
-	free(map);
-}
 
 int	count_args(char *arg, bool get)
 {
@@ -68,6 +52,29 @@ bool alloc_stacks(int stack_len, struct s_push_swap *ps)
     return (true);
 }
 
+bool set_act(char *arg, int *res, int *sign_counter, int *sign)
+{
+    while (*arg)
+    {
+        if (!in("-+0123456789", *arg))
+            return (false);
+        if (in("-+", *arg))
+            *sign_counter++;
+        if (*arg == '-')
+            *sign = 1;
+        if (*sign_counter > 1 || (*(arg + 1) && in("0123456789", *arg)
+            && in("-+", *(arg + 1))) || (*(arg + 1) && in("-+", *arg) 
+            && !in("0123456789", *(arg + 1))))
+            return (false);
+        if (in("0123456789", *arg))
+        {
+            *res *= 10;
+            *res += *arg - 48;
+        }
+        arg++;
+    }
+}
+
 bool set_number(char *arg, int *to_set)
 {
     long res;
@@ -98,6 +105,8 @@ bool set_number(char *arg, int *to_set)
     }
     if (sign == 1)
         res = res * -1;
+    if (sign_counter == 1 && res == 0)
+        return (false);    
     if (res > INT_MAX || res < INT_MIN)
         return (false);
     *to_set = (int)res;
@@ -112,7 +121,7 @@ int	set_stack(char **argv, int stack_len, struct s_push_swap *ps)
     char **arg_parsed;
     
     if (!alloc_stacks(stack_len, ps))
-        ps_exit("Allocation fault.\n", 1, ps);
+        ps_exit(1, ps);
     counter = 1;
     counter3 = 0;
     while (argv[counter])
@@ -122,7 +131,7 @@ int	set_stack(char **argv, int stack_len, struct s_push_swap *ps)
         while (arg_parsed[counter2])
         {
             if (!set_number(arg_parsed[counter2], &ps->stack_a[counter3]))
-                ps_exit("Wrong type of input as integer.\n", 1, ps);
+                ps_exit(1, ps);
             counter2++;
             counter3++;
         }
