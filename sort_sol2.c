@@ -6,12 +6,12 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 03:25:53 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/22 05:12:04 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:46:41 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./arrays/ps_arrays.h"
-#include "./push_swap.h"
+#include "arrays/ps_arrays.h"
+#include "push_swap.h"
 
 void	sol_3_elem(struct s_push_swap *ps)
 {
@@ -53,9 +53,11 @@ void	sol_4_elem(struct s_push_swap *ps)
 void	sol_2(struct s_push_swap *ps)
 {
 	if (ps->size_a == 2)
+	{
 		if (ps->stack_a[0] > ps->stack_a[1])
 		{
 			sa(ps);
 			ps_exit(1, ps);
 		}
+	}
 }

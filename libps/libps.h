@@ -6,12 +6,13 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:56:31 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/22 04:57:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:31:19 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBPS_H
 # define LIBPS_H
+
 # include <stdbool.h>
 # include <sys/types.h>
 

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:10:31 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/22 04:55:40 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:45:30 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	sa(struct s_push_swap *ps)
 
 void	sb(struct s_push_swap *ps)
 {
-	int swap;
+	int		swap;
 
 	swap = ps->stack_b[0];
 	ps->stack_b[0] = ps->stack_b[1];

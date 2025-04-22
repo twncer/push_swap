@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:01:07 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/22 04:59:04 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:38:15 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ps_exit(int code, struct s_push_swap *ps)
 		free(ps->stack_a);
 	if (ps->stack_b)
 		free(ps->stack_b);
-	write(1, "Error!\n", 7);
+	if (code == 1)
+		write(1, "Error!\n", 7);
 	exit(code);
 }
 

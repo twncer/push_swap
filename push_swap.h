@@ -6,13 +6,13 @@
 /*   By: btuncer <btuncer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:38:03 by btuncer           #+#    #+#             */
-/*   Updated: 2025/04/22 05:08:45 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/04/22 05:31:42 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-
 # define PUSH_SWAP_H
+
 # include <stdbool.h>
 
 struct	s_push_swap
